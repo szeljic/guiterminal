@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="application" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="szeljic.MainController">
+   <children>
+      <MenuBar prefHeight="29.0" prefWidth="995.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="GUI Terminal">
+            <items>
+              <MenuItem fx:id="mi_gui_terminal_close" mnemonicParsing="false" onAction="#closeApplication" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Command">
+            <items>
+                  <MenuItem fx:id="mi_command_execute" mnemonicParsing="false" onAction="#executeCommand" text="Execute" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+              <MenuItem fx:id="mi_command_add" mnemonicParsing="false" onAction="#addCommand" text="Add" />
+                  <MenuItem fx:id="mi_command_edit" mnemonicParsing="false" onAction="#editCommand" text="Edit" />
+                  <MenuItem fx:id="mi_command_remove" mnemonicParsing="false" onAction="#removeCommand" text="Remove" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem fx:id="mi_help_about" mnemonicParsing="false" onAction="#openAbout" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <SplitPane dividerPositions="0.15859766277128548" layoutX="23.0" layoutY="29.0" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
+        <items>
+          <AnchorPane maxWidth="220.0" minHeight="0.0" minWidth="180.0" prefHeight="369.0" prefWidth="180.0" SplitPane.resizableWithParent="false">
+               <children>
+                  <SplitPane dividerPositions="0.8377425044091711" maxWidth="185.0" minWidth="185.0" orientation="VERTICAL" prefHeight="569.0" prefWidth="185.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="150.0" prefHeight="492.0" prefWidth="198.0">
+                           <children>
+                              <ListView fx:id="lv_commands" layoutX="-8.0" layoutY="39.0" minWidth="184.0" prefHeight="469.0" prefWidth="184.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane maxHeight="90.0" maxWidth="185.0" minHeight="90.0" minWidth="185.0" prefHeight="90.0" prefWidth="185.0" SplitPane.resizableWithParent="false">
+                           <children>
+                              <VBox layoutX="15.0" layoutY="14.0" spacing="10.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                                 <children>
+                                    <HBox layoutX="15.0" layoutY="14.0" spacing="15.0">
+                                       <children>
+                                          <Button fx:id="btn_execute" layoutX="15.0" layoutY="14.0" maxWidth="70.0" minWidth="70.0" mnemonicParsing="false" onAction="#executeCommand" prefWidth="70.0" text="Execute" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="15.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox layoutX="15.0" layoutY="49.0" spacing="15.0">
+                                       <children>
+                                          <Button fx:id="btn_edit" layoutX="15.0" layoutY="50.0" maxWidth="70.0" minWidth="70.0" mnemonicParsing="false" onAction="#editCommand" prefWidth="70.0" text="Edit" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+                                          <Button fx:id="btn_remove" layoutX="92.0" layoutY="47.0" maxWidth="70.0" minWidth="70.0" mnemonicParsing="false" onAction="#removeCommand" prefWidth="70.0" text="Remove" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="100.0" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children></AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <SplitPane dividerPositions="0.09523809523809523" layoutX="66.0" layoutY="17.0" orientation="VERTICAL" prefHeight="369.0" prefWidth="456.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane maxHeight="50.0" minHeight="50.0" minWidth="300.0" prefHeight="50.0" prefWidth="988.0">
+                           <children>
+                              <HBox layoutX="16.0" layoutY="14.0" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" spacing="15.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="14.0">
+                                 <children>
+                                    <TextField fx:id="tf_add_command" layoutX="16.0" layoutY="14.0" onKeyPressed="#onEnter" prefHeight="26.0" prefWidth="841.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="131.0" AnchorPane.topAnchor="14.0" />
+                                    <Button fx:id="btn_add_command" layoutX="916.0" layoutY="14.0" maxHeight="26.0" maxWidth="115.0" minHeight="26.0" minWidth="115.0" mnemonicParsing="false" onAction="#addCommand" prefHeight="26.0" prefWidth="115.0" text="Add Command" AnchorPane.leftAnchor="866.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+                                 </children>
+                              </HBox>
+                           </children></AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="483.0" prefWidth="988.0">
+                           <children>
+                              <TextArea fx:id="ta_output" editable="false" layoutX="22.0" layoutY="45.0" prefHeight="294.0" prefWidth="454.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children></AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
