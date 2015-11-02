@@ -66,7 +66,9 @@ public class MainController {
 	
 	@FXML protected void onEnter(KeyEvent key) {
 		
-		System.out.println(key.getCode() == KeyCode.ENTER);
+		if(key.getCode() == KeyCode.ENTER) {
+			this.addCommand(new ActionEvent());
+		}
 		
 	}
 }
