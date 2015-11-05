@@ -72,7 +72,10 @@
                            <children>
                               <HBox layoutX="16.0" layoutY="14.0" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" spacing="15.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="14.0">
                                  <children>
-                                    <TextField fx:id="tf_add_command" layoutX="16.0" layoutY="14.0" onKeyPressed="#onEnter" prefHeight="26.0" prefWidth="841.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="131.0" AnchorPane.topAnchor="14.0" />
+                                    <TextField fx:id="tf_add_command" layoutX="16.0" layoutY="14.0" onKeyPressed="#onEnter" prefHeight="26.0" prefWidth="841.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="131.0" AnchorPane.topAnchor="14.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></TextField>
                                     <Button fx:id="btn_add_command" layoutX="916.0" layoutY="14.0" maxHeight="26.0" maxWidth="115.0" minHeight="26.0" minWidth="115.0" mnemonicParsing="false" onAction="#addCommand" prefHeight="26.0" prefWidth="115.0" text="Add Command" AnchorPane.leftAnchor="866.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
                                  </children>
                               </HBox>
