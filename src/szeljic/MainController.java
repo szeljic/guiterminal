@@ -1,5 +1,11 @@
 package szeljic;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Calendar;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,6 +17,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import szeljic.db.DBConnection;
 
 public class MainController {
 	
@@ -42,11 +49,37 @@ public class MainController {
 	}
 	
 	@FXML protected void openAbout(ActionEvent action) {
-		ta_output.setText("Some Text");
+		
+		ArrayList<String> listOfColumns = new ArrayList<>();
+		listOfColumns.add("name");
+		
+		ArrayList<String> listOfValues = new ArrayList<>();
+		listOfValues.add("gulp");
+		
+		try {
+			ResultSet resultSet = DBConnection.select("COMMAND", listOfColumns, listOfValues);
+			while(resultSet.next()) {
+				System.out.println(resultSet.getString(3));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@FXML protected void executeCommand(ActionEvent action) {
+		// 1) create a java calendar instance
+		Calendar calendar = Calendar.getInstance();
+		 
+		// 2) get a java.util.Date from the calendar instance.
+//		    this date will represent the current instant, or "now".
+		java.util.Date now = calendar.getTime();
+		calendar.setTime(now);
+		 System.out.println(calendar.getTimeInMillis());
+		// 3) a java current time (now) instance
+		java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
 		
+		System.out.println(currentTimestamp);
 	}
 	
 	@FXML protected void addCommand(ActionEvent action) {
@@ -58,16 +91,51 @@ public class MainController {
 	
 	@FXML protected void editCommand(ActionEvent action) {
 		
+		ArrayList<String> listOfColumns = new ArrayList<>();
+		listOfColumns.add("name");
+		listOfColumns.add("command");
+		listOfColumns.add("created_at");
+		
+		ArrayList<String> listOfValues = new ArrayList<>();
+		listOfValues.add("update");
+		listOfValues.add("sudo apt-get update");
+		listOfValues.add("now");
+		
+		try {
+			DBConnection.insert("COMMAND", listOfColumns, listOfValues);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@FXML protected void removeCommand(ActionEvent action) {
 		
+		ResultSet resultSet = DBConnection.selectAll("COMMAND");
+		try {
+			while(resultSet.next()){
+				System.out.println(resultSet.getString(2));
+				System.out.println(resultSet.getString(3));
+				System.out.println(resultSet.getString(4));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML protected void onEnter(KeyEvent key) {
 		
+		DBConnection.remove("COMMAND", 19);
+		
 		if(key.getCode() == KeyCode.ENTER) {
-			this.addCommand(new ActionEvent());
+			
+			Connection connection = DBConnection.openConnection();
+			
+			System.out.println(connection.toString());
+			
 		}
 		
 	}
