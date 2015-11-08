@@ -25,8 +25,6 @@ public class DBConnection {
 		
 		createCommandTable();
 		
-		System.out.println("Opened database successfully");
-		
 		return connection;
 	}
 	
@@ -82,7 +80,6 @@ public class DBConnection {
 				if(listOfColumns.get(i).equalsIgnoreCase(metaData.getColumnName(j))) {
 					hasColumnName = true;
 					metaDataMap.put(metaData.getColumnName(j).toUpperCase(), metaData.getColumnType(j));
-					System.out.println(metaDataMap);
 				}
 			}
 			
@@ -133,9 +130,6 @@ public class DBConnection {
 			}
 			
 		}
-		System.out.println(metaDataMap);
-		System.out.println(query);
-		
 		Statement stmt2 = connection.createStatement();
 		
 		ResultSet resultSet2 = stmt2.executeQuery(query);
@@ -158,8 +152,6 @@ public class DBConnection {
 		
 		ResultSetMetaData metaData = resultSet.getMetaData();
 		
-		System.out.println(metaData.getColumnCount());
-		
 		String query = "INSERT INTO " + tableName + "(";
 		
 		boolean hasColumnName;
@@ -175,7 +167,6 @@ public class DBConnection {
 				if(listOfColumns.get(i).equalsIgnoreCase(metaData.getColumnName(j))) {
 					hasColumnName = true;
 					metaDataMap.put(metaData.getColumnName(j).toUpperCase(), metaData.getColumnType(j));
-					System.out.println(metaDataMap);
 				}
 			}
 			
@@ -240,7 +231,6 @@ public class DBConnection {
 		}
 		
 		query += ")";
-		System.out.println(query);
 		Statement stmt = connection.createStatement();
 		
 		stmt.executeUpdate(query);
@@ -265,8 +255,6 @@ public class DBConnection {
 		
 		ResultSetMetaData metaData = resultSet.getMetaData();
 		
-		System.out.println(metaData.getColumnCount());
-		
 		boolean hasColumnName;
 		
 		HashMap<String, Integer> metaDataMap = new HashMap<>();
@@ -281,7 +269,6 @@ public class DBConnection {
 				if(listOfColumns.get(i).equalsIgnoreCase(metaData.getColumnName(j))) {
 					hasColumnName = true;
 					metaDataMap.put(metaData.getColumnName(j).toUpperCase(), metaData.getColumnType(j));
-					System.out.println(metaDataMap);
 				}
 			}
 			
@@ -347,7 +334,6 @@ public class DBConnection {
 		openConnection();
 		
 		String query = "SELECT * FROM " + tableName;
-		System.out.println(query);
 		
 		Statement stmt;
 		ResultSet resultSet = null;
@@ -359,8 +345,6 @@ public class DBConnection {
 		}
 		
 //		closeConnection();
-		
-		System.out.println(resultSet);
 		
 		return resultSet;
 	}
