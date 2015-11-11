@@ -70,7 +70,8 @@ public class Command {
 		DBConnection.update("COMMAND", listOfColumns, listOfValues, this.id);
 	}
 	
-	public void removeCommand(String name) {
+	//implement remove on id or on name
+	public void removeCommand(int id) {
 		DBConnection.remove("COMMAND", this.id);
 	}
 	
@@ -110,7 +111,7 @@ public class Command {
 		return new Command();
 	}
 	
-	public List<Command> getAllCommands() {
+	public static List<Command> getAllCommands() {
 	
 		List<Command> allCommands = new ArrayList<>();
 		

@@ -10,6 +10,9 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import szeljic.exception.ArgumentsMatchException;
+import szeljic.exception.UnknownColumnName;
+
 public class DBConnection {
 	
 	private static Connection connection = null;
@@ -62,7 +65,7 @@ public class DBConnection {
 		String query = "SELECT * FROM " + tableName + " WHERE ";
 		
 		if(listOfColumns.size() != listOfValues.size()) {
-			throw new Exception("Columns don't match values!");
+			throw new ArgumentsMatchException("Columns don't match values!");
 		}
 		
 		Statement stmt1 = connection.createStatement();
@@ -84,7 +87,7 @@ public class DBConnection {
 			}
 			
 			if(!hasColumnName) {
-				throw new Exception("Not correct column name of table!");
+				throw new UnknownColumnName("Not correct column name of table!");
 			}
 			
 			switch (metaDataMap.get(listOfColumns.get(i))) {
@@ -136,14 +139,14 @@ public class DBConnection {
 		
 		return resultSet2;
 	}
-	
+																																																																																																																																																																																																																																													
 	//INSERT INTO table_name (column1, column2, ...) VALUES(value1, value2, ...)
 	public static boolean insert(String tableName, ArrayList<String> listOfColumns, ArrayList<String> listOfValues) throws Exception {
 		
 		openConnection();
 		
 		if(listOfColumns.size() != listOfValues.size()) {
-			throw new Exception("Columns don't match values!");
+			throw new ArgumentsMatchException("Columns don't match values!");
 		}
 		
 		//get all columns names
@@ -171,7 +174,7 @@ public class DBConnection {
 			}
 			
 			if(!hasColumnName) {
-				throw new Exception("Not correct column name of table!");
+				throw new UnknownColumnName("Not correct column name of table!");
 			}
 			
 			if(i < listOfColumns.size() - 1) {
@@ -246,7 +249,7 @@ public class DBConnection {
 		String query = "UPDATE " + tableName + " SET ";
 		
 		if(listOfColumns.size() != listOfValues.size()) {
-			throw new Exception("Columns don't match values!");
+			throw new ArgumentsMatchException("Columns don't match values!");
 		}
 		
 		//get all columns names
@@ -273,7 +276,7 @@ public class DBConnection {
 			}
 			
 			if(!hasColumnName) {
-				throw new Exception("Not correct column name of table!");
+				throw new UnknownColumnName("Not correct column name of table!");
 			}
 			
 			switch (metaDataMap.get(listOfColumns.get(i))) {

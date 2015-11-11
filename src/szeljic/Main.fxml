@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -78,7 +79,10 @@
                            </children></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="483.0" prefWidth="988.0">
                            <children>
-                              <TextArea fx:id="ta_output" editable="false" layoutX="22.0" layoutY="45.0" prefHeight="294.0" prefWidth="454.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <TextArea fx:id="ta_output" editable="false" layoutX="22.0" layoutY="45.0" prefHeight="294.0" prefWidth="454.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font name="Apple SD Gothic Neo Regular" size="48.0" />
+                                 </font></TextArea>
                            </children></AnchorPane>
                     </items>
                   </SplitPane>

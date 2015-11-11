@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import szeljic.db.DBConnection;
+import szeljic.model.Command;
 
 public class MainController {
 	
@@ -84,9 +86,25 @@ public class MainController {
 	
 	@FXML protected void addCommand(ActionEvent action) {
 		
-		System.out.println(action);
+		Command command = new Command();
+		command.setName("gulp");
+		command.setCommand("gulp basset:watch");
 		
-		ta_output.setText(tf_add_command.getText());
+		try {
+			command.addCommand();
+		} catch (Exception e) {
+			System.out.println("Unable to add command into database!");
+		}
+		
+		command.setName("list all files in folder");
+		command.setCommand("ls -l");
+		
+		try {
+			command.addCommand();
+		} catch (Exception e) {
+			System.out.println("Unable to add command into database!");
+		}
+		
 	}
 	
 	@FXML protected void editCommand(ActionEvent action) {
@@ -128,13 +146,16 @@ public class MainController {
 	
 	@FXML protected void onEnter(KeyEvent key) {
 		
-		DBConnection.remove("COMMAND", 19);
+		List<Command> list = Command.getAllCommands();
 		
-		if(key.getCode() == KeyCode.ENTER) {
+		for (Command command : list) {
 			
-			Connection connection = DBConnection.openConnection();
-			
-			System.out.println(connection.toString());
+			System.out.println(command.getId());
+			System.out.println(command.getName());
+			System.out.println(command.getCommand());
+			System.out.println(command.getCreatedAt());
+			System.out.println(command.getUpdatedAt());
+			System.out.println("---------------------------\n\n");
 			
 		}
 		
